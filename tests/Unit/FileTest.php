@@ -26,5 +26,9 @@ class FileTest extends TestCase {
 		$decoded_stream = $caster->get($sample_model, null, $encoded_stream, null);
 
 		$this->assertEquals($sample_string, stream_get_contents($decoded_stream));
+
+		fclose($stream);
+		fclose($encoded_stream);
+		fclose($decoded_stream);
 	}
 }
