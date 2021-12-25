@@ -60,12 +60,8 @@ class Base64File extends Base64String implements CastsAttributes {
 		if (is_string($value)) {
 			return parent::set($model, $key, $value, $attributes);
 		} else {
-			$copy_buffer = fopen("php://memory", "r+");
-			stream_copy_to_stream($value, $copy_buffer);
-			fseek($copy_buffer, 0, SEEK_SET);
-			$decoded_contents = stream_get_contents($copy_buffer);
+			$decoded_contents = stream_get_contents($value);
 			$encoded_contents = parent::set($model, $key, $decoded_contents, $attributes);
-			fclose($copy_buffer);
 
 			$type = $model->type;
 			return fopen("data://$type,$encoded_contents", "rb");
