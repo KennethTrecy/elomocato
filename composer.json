@@ -1,0 +1,14 @@
+{
+	"name": "kennethtrecy/elomocato",
+	"type": "library",
+	"description": "Eloquent Model Casting Tools",
+	"keywords": ["eloquent", "cast", "tools", "laravel", "package"],
+	"authors": [
+		{
+			"name": "Kenneth Trecy Tobias",
+			"email": "web.kennethtobias@gmail.com",
+			"homepage": "http://repo.local/KennethTrecy",
+			"role": "Developer"
+		}
+	]
+}
