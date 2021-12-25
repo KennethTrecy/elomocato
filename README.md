@@ -44,8 +44,8 @@ This repository only contains casting tools to be used with Eloquent models incl
 
 ## Available classes
 Here are the available classes that can be used to aid in encoding or decoding of attributes:
-- `KennethTrecy\Elomocato\Base64String`. Automatics encodes or decodes a string attribute.
-- `KennethTrecy\Elomocato\Base64File`. Automatics encodes or decodes a binary attribute.
+- `KennethTrecy\Elomocato\Base64String`. Automatically encodes or decodes a string attribute.
+- `KennethTrecy\Elomocato\Base64File`. Automatically encodes or decodes a binary attribute.
 
 ## Documentation
 You can generate the documentation offline using [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
