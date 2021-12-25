@@ -55,6 +55,7 @@ You can generate the documentation offline using [phpDocumentor](https://docs.ph
 2. Run `git clone git@repo.kennethtrecy:KennethTrecy/elomocato.git`.
 3. Run `cd elomocato`.
 4. Run `php phpDocumentor.phar` or `phpDocumentor`, or other commands depending on your installation option.
+5. Visit the [hidden_docs/index.html](hidden_docs/index.html) in your preferred browser.
 
 ## Notes
 This is a newly-created project which may have bugs. If you found one, please file an issue.
