@@ -3,6 +3,7 @@
 	"type": "library",
 	"description": "Collection of casting tools that can be used with any Eloquent model",
 	"keywords": ["eloquent", "cast", "tools", "laravel", "package"],
+	"homepage": "http://repo.local/KennethTrecy/elomocato",
 	"authors": [
 		{
 			"name": "Kenneth Trecy Tobias",
