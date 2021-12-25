@@ -28,5 +28,12 @@
 		"psr-4": {
 			"Tests\\": "tests/"
 		}
-	}
+	},
+	"scripts": {
+		"test": [
+			"./vendor/bin/phpunit"
+		]
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }
