@@ -47,6 +47,13 @@ Here are the available classes that can be used to aid in encoding or decoding o
 - `KennethTrecy\Elomocato\Base64String`. Automatics encodes or decodes a string attribute.
 - `KennethTrecy\Elomocato\Base64File`. Automatics encodes or decodes a binary attribute.
 
+## Documentation
+You can generate the documentation offline using [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
+1. Choose one of the installation options of [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
+2. Run `git clone git@repo.kennethtrecy:KennethTrecy/elomocato.git`.
+3. Run `cd elomocato`.
+4. Run `php phpDocumentor.phar` or `phpDocumentor`, or other commands depending on your installation option.
+
 ## Notes
 This is a newly-created project which may have bugs. If you found one, please file an issue.
 
