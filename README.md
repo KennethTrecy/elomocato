@@ -6,26 +6,33 @@ In the future, it may have other classes that can be used with Eloquent models. 
 ## Installation
 1. Put the following information in the your `composer.json`:
    ```
-	{
-		// Your specified properties like name, type, license, etc...
+   {
+      // Your specified properties like name, type, license, etc...
 
-		"require": {
-			// other dependencies here...
+      "require": {
+         // other dependencies here...
 
-			"kennethtrecy/elomocato": "0.1.0"
-		},
+         "kennethtrecy/elomocato": "0.1.0"
+      },
 
-		// Your other properties like require-dev, autoload, etc...
+      // Your other properties like require-dev, autoload, etc...
 
-		// Add the repository to instruct where to find the package
-		"repositories": [
-			{
-				"type": "vcs",
-				"url": "git@repo.kennethtrecy:KennethTrecy/elomocato.git"
-			}
-		]
-	}
-	```
+      // Add the repository to instruct where to find the package
+      "repositories": [
+         {
+            "type": "composer",
+            "url": "http://repo.local/Kennethtrecy/PHP_packages/raw/branch/master/"
+         }
+      ],
+
+		"config": {
+			// Other configurations here...
+
+			// Allow accessing insecure protocol for the mean time
+			"secure-http": false
+		}
+   }
+   ```
 2. Run `composer install`
 3. Specify the cast of the attribute to your model class.
    Example:
