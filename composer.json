@@ -30,7 +30,8 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Tests\\": "t/"
+			"Tests\\": "t/",
+			"Tests\\Mocks\\Models\\": "t/mocks/models/"
 		}
 	},
 	"scripts": {
