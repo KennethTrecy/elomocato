@@ -18,7 +18,10 @@
 		"illuminate/contracts": "^8.77"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^9.5"
+		"phpunit/phpunit": "^9.5",
+		"laravel/framework": "^8.82",
+		"orchestra/testbench": "^6.24",
+		"illuminate/database": "^8.82"
 	},
 	"autoload": {
 		"psr-4": {
