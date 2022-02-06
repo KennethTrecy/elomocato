@@ -2,16 +2,15 @@
 
 namespace Tests;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase {
-	protected function defineEnvironment($app) {
+	use RefreshDatabase;
 
-	}
+	public function setUp(): void {
+		parent::setUp();
 
-	protected function getPackageProviders($app) {
-		return [
-
-		];
+		$this->loadMigrationsFrom(__DIR__.'/mocks/migrations');
 	}
 }
