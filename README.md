@@ -3,6 +3,9 @@ This repository only contains casting tools to be used with Eloquent models incl
 
 In the future, it may have other classes that can be used with Eloquent models. For now, it only supports casting related to base64 encoding.
 
+## Origin
+The repository was based from [`plugin`] branch of [Web Template].
+
 ## Installation
 1. Put the following information in the your `composer.json`:
    ```
@@ -69,3 +72,6 @@ This is a newly-created project which may have bugs. If you found one, please fi
 
 ## Author
 Elomocato was created by Kenneth Trecy Tobias.
+
+[`plugin`]: https://github.com/KennethTrecy/web_template/tree/plugin
+[Web Template]: http://github.com/KennethTrecy/web_template
