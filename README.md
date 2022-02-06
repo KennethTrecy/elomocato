@@ -55,6 +55,9 @@ In the future, it may have other classes that can be used with Eloquent models. 
 Here are the available classes that can be used to aid in encoding or decoding of attributes:
 - `KennethTrecy\Elomocato\Base64String`. Automatically encodes or decodes a string attribute.
 - `KennethTrecy\Elomocato\Base64File`. Automatically encodes or decodes a binary attribute.
+- `KennethTrecy\Elomocato\ReverseURLString`. Automatically encodes or decodes a binary attribute. By
+  reverse, it means what is recorded in the database is the decoded value and what is from model is
+  the encoded value.
 
 ## Documentation
 You can generate the documentation offline using [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
