@@ -12,7 +12,7 @@ In the future, it may have other classes that can be used with Eloquent models. 
       "require": {
          // other dependencies here...
 
-         "kennethtrecy/elomocato": "0.1.0"
+         "kennethtrecy/elomocato": "^0.1.0"
       },
 
       // Your other properties like require-dev, autoload, etc...
@@ -21,7 +21,7 @@ In the future, it may have other classes that can be used with Eloquent models. 
       "repositories": [
          {
             "type": "composer",
-            "url": "http://repo.local/Kennethtrecy/PHP_packages/raw/branch/master/"
+            "url": "http://github.com/Kennethtrecy/PHP_packages/raw/branch/master/"
          }
       ],
 
