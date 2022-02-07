@@ -64,7 +64,7 @@ Here are the available classes that can be used to aid in encoding or decoding o
 ## Documentation
 You can generate the documentation offline using [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
 1. Choose one of the installation options of [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
-2. Run `git clone git@repo.kennethtrecy:KennethTrecy/elomocato.git`.
+2. Run `git clone git@github.com:KennethTrecy/elomocato.git`.
 3. Run `cd elomocato`.
 4. Run `php phpDocumentor.phar` or `phpDocumentor`, or other commands depending on your installation option.
 5. Visit the [hidden_docs/index.html](hidden_docs/index.html) in your preferred browser.
