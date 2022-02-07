@@ -21,15 +21,14 @@ In the future, it may have other classes that can be used with Eloquent models. 
       "repositories": [
          {
             "type": "composer",
-            "url": "http://github.com/Kennethtrecy/PHP_packages/raw/branch/master/"
+            "url": "https://github.com/Kennethtrecy/PHP_packages/raw/branch/master/"
          }
       ],
 
 		"config": {
 			// Other configurations here...
 
-			// Allow accessing insecure protocol for the mean time
-			"secure-http": false
+			"secure-http": true
 		}
    }
    ```
