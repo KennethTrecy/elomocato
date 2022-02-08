@@ -2,6 +2,7 @@
 
 namespace KennethTrecy\Elomocato;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 /**
