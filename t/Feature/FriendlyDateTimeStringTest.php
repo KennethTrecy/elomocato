@@ -32,15 +32,12 @@ class MockDateFileB extends MockDateFile implements CastConfiguration {
 	public static $created_at_configuration = [];
 
 	protected $casts = [
-		"created_at" => FriendlyDateTimeString::class,
-		"updated_at" => FriendlyDateTimeString::class
+		"created_at" => FriendlyDateTimeString::class
 	];
 
 	public function getCastConfiguration() {
 		return [
-			FriendlyDateTimeString::NAMESPACE => [
-				"created_at" => static::$created_at_configuration
-			]
+			"created_at" => static::$created_at_configuration
 		];
 	}
 }
