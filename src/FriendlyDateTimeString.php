@@ -12,6 +12,17 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
  * It does nothing when setting value to the database.
  */
 class FriendlyDateTimeString implements CastsAttributes {
+	const NAMESPACE = "FriendlyDateTimeString";
+
+	protected $namespace;
+
+	function __construct($namespace = null) {
+		$this->namespace = $namespace;
+		if (!is_null($namespace)) {
+			$this->namespace = static::NAMESPACE;
+		}
+	}
+
 	/**
 	 * Encodes the original value to target human-readable format.
 	 *
@@ -22,6 +33,8 @@ class FriendlyDateTimeString implements CastsAttributes {
 	 * @return string
 	 */
 	public function get($model, $key, $value, $attributes) {
+		$all_configurations = $model->getElomocatoCastConfiguration();
+		$key_configuration = $all_configurations[$this->namespace][$key];
 		return Carbon::parse($value)->diffForHumans();
 	}
 
