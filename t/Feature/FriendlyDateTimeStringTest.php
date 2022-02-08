@@ -17,6 +17,8 @@ class MockDateFile extends File implements CastConfiguration {
 		]);
 	}
 
+	public static $created_at_configuration = [];
+
 	protected $casts = [
 		"created_at" => FriendlyDateTimeString::class,
 		"updated_at" => FriendlyDateTimeString::class
@@ -25,9 +27,7 @@ class MockDateFile extends File implements CastConfiguration {
 	public function getCastConfiguration() {
 		return [
 			FriendlyDateTimeString::NAMESPACE => [
-				"created_at" => [
-					"prefix" => "shortAbsolute"
-				]
+				"created_at" => static::$created_at_configuration
 			]
 		];
 	}
@@ -61,6 +61,10 @@ class FriendlyDateTimeStringTest extends TestCase {
 	public function test_get_with_prefix() {
 		$now = now();
 		$model = MockDateFile::createDefault();
+
+		MockDateFile::$created_at_configuration = [
+			"prefix" => "shortAbsolute"
+		];
 
 		$this->assertDatabaseHas("files", [
 			"created_at" => $now
