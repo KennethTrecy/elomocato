@@ -1,7 +1,7 @@
 # Elomocato (Eloquent Model Casting Tools)
 This repository only contains casting tools to be used with Eloquent models included in [Laravel Framework](https://laravel.com/).
 
-In the future, it may have other classes that can be used with Eloquent models. For now, it only supports casting related to base64 encoding.
+In the future, it may have other classes that can be used with Eloquent models.
 
 ## Origin
 The repository was based from [`plugin`] branch of [Web Template].
