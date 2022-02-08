@@ -12,7 +12,7 @@ In the future, it may have other classes that can be used with Eloquent models. 
       "require": {
          // other dependencies here...
 
-         "kennethtrecy/elomocato": "^0.1.0"
+         "kennethtrecy/elomocato": "^0.2.0"
       },
 
       // Your other properties like require-dev, autoload, etc...
