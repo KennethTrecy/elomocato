@@ -60,6 +60,9 @@ Here are the available classes that can be used to aid in encoding or decoding o
 - `KennethTrecy\Elomocato\ReverseURLString`. Automatically encodes or decodes a binary attribute. By
   reverse, it means what is recorded in the database is the decoded value and what is from model is
   the encoded value.
+- `KennethTrecy\Elomocato\FriendlyDateTimeString`. Automatically converts a datetime attribute in
+  human-friendly format. However, it does nothing when setting a value. It uses [`diffForHumans`]
+  and related methods internally.
 
 ## Documentation
 You can generate the documentation offline using [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
@@ -77,3 +80,4 @@ Elomocato was created by Kenneth Trecy Tobias.
 
 [`plugin`]: https://github.com/KennethTrecy/web_template/tree/plugin
 [Web Template]: http://github.com/KennethTrecy/web_template
+[`diffForHumans`]: https://github.com/briannesbitt/Carbon/blob/1a3b5039ccc524065dea55a732385e5a9c0f03d6/src/Carbon/CarbonInterface.php#L1340
