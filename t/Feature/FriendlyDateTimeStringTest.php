@@ -5,13 +5,25 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Tests\Mocks\Models\File;
 use KennethTrecy\Elomocato\FriendlyDateTimeString;
+use KennethTrecy\Elomocato\CastConfiguration;
 
-class MockDateFile extends File {
+class MockDateFile extends File implements CastConfiguration {
 	protected $table = "files";
 
 	protected $casts = [
+		"created_at" => FriendlyDateTimeString::class,
 		"updated_at" => FriendlyDateTimeString::class
 	];
+
+	public function getCastConfiguration() {
+		return [
+			FriendlyDateTimeString::NAMESPACE => [
+				"created_at" => [
+					"prefix" => "shortAbsolute"
+				]
+			]
+		];
+	}
 }
 
 class FriendlyDateTimeStringTest extends TestCase {
@@ -43,5 +55,18 @@ class FriendlyDateTimeStringTest extends TestCase {
 			"updated_at" => $updated_time
 		]);
 		$this->assertEquals($updated_time->diffForHumans(), $model->updated_at);
+	}
+
+	public function test_get_with_prefix() {
+		$now = now();
+		$model = MockDateFile::create([
+			"name" => "a.txt",
+			"content" => "abc"
+		]);
+
+		$this->assertDatabaseHas("files", [
+			"created_at" => $now
+		]);
+		$this->assertEquals($now->shortAbsoluteDiffForHumans(), $model->created_at);
 	}
 }
