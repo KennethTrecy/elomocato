@@ -26,22 +26,23 @@ class FriendlyDateTimeString implements CastsAttributes {
 	/**
 	 * Encodes the original value to target human-readable format.
 	 *
-	 * @param \Illuminate\Database\Eloquent\Model $modelmodel
+	 * @param \KennethTrecy\Elomocato\CastConfiguration $model
 	 * @param string $key
 	 * @param string $value
 	 * @param array $attributes
 	 * @return string
 	 */
 	public function get($model, $key, $value, $attributes) {
-		$all_configurations = $model->getElomocatoCastConfiguration();
-		$key_configuration = $all_configurations[$this->namespace][$key];
+		$all_configurations = $model->getCastConfiguration();
+		$namespaced_configuration = $all_configurations[$this->namespace] ?? [];
+		$key_configuration = $namespaced_configuration[$key] ?? [];
 		return Carbon::parse($value)->diffForHumans();
 	}
 
 	/**
 	 * Sets the original value. It does nothin.
 	 *
-	 * @param \Illuminate\Database\Eloquent\Model $modelmodel
+	 * @param \KennethTrecy\Elomocato\CastConfiguration $model
 	 * @param string $key
 	 * @param string $value
 	 * @param array $attributes
