@@ -34,7 +34,11 @@ class FriendlyDateTimeString implements CastsAttributes {
 	 * @return string
 	 */
 	public function get($model, $key, $value, $attributes) {
-		$all_configurations = $model->getCastConfiguration();
+		$all_configurations = [];
+		if ($model instanceof CastConfiguration) {
+			$all_configurations = $model->getCastConfiguration();
+		}
+
 		$namespaced_configuration = $all_configurations[$this->namespace] ?? [];
 		$key_configuration = $namespaced_configuration[$key] ?? [];
 
