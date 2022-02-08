@@ -21,7 +21,7 @@ In the future, it may have other classes that can be used with Eloquent models. 
       "repositories": [
          {
             "type": "composer",
-            "url": "https://github.com/Kennethtrecy/PHP_packages/raw/branch/master/"
+            "url": "https://raw.githubusercontent.com/KennethTrecy/PHP_packages/master"
          }
       ],
 
