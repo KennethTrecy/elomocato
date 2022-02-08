@@ -24,7 +24,7 @@ The repository was based from [`plugin`] branch of [Web Template].
       "repositories": [
          {
             "type": "composer",
-            "url": "https://github.com/Kennethtrecy/PHP_packages/raw/branch/master/"
+            "url": "https://raw.githubusercontent.com/KennethTrecy/PHP_packages/master"
          }
       ],
 
