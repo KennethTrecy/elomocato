@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Tests\Mocks\Models\File;
 use KennethTrecy\Elomocato\ReverseURLString;
 
-class MockFile extends File {
+class MockReverseURLFile extends File {
 	protected $table = "files";
 
 	protected $casts = [
@@ -18,7 +18,7 @@ class ReverseURLStringTest extends TestCase {
 	public function test_get() {
 		$name = "a a.text";
 		$encoded_name = urlencode($name);
-		$model = MockFile::create([
+		$model = MockReverseURLFile::create([
 			"name" => $encoded_name,
 			"content" => "abc"
 		]);
@@ -32,7 +32,7 @@ class ReverseURLStringTest extends TestCase {
 	public function test_set() {
 		$old_name = "a a.txt";
 		$new_name = "b b.txt";
-		$model = MockFile::create([
+		$model = MockReverseURLFile::create([
 			"name" => urlencode($old_name),
 			"content" => "abc"
 		]);
