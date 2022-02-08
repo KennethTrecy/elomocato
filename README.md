@@ -83,20 +83,18 @@ class Post extends Model implements CastConfiguration {
 
    public function getCastConfiguration() {
       return [
-         FriendlyDatetimeString::NAMESPACE => [
-            // Put the name of attributes you want to customize here...
-            "published_datetime" => [
-               // Prefix of the method use want to use (optional).
-               // If null, the method to be called is `diffForHumans`.
-               // In this case, it will call `shortAbsoluteDiffForHumans`.
-               "prefix" => "shortAbsolute",
+         // Put the name of attributes you want to customize here...
+         "published_datetime" => [
+            // Prefix of the method use want to use (optional).
+            // If null, the method to be called is `diffForHumans`.
+            // In this case, it will call `shortAbsoluteDiffForHumans`.
+            "prefix" => "shortAbsolute",
 
-               // Arguments to pass to the method
-               "arguments" => [
-                  now()
-               ]
+            // Arguments to pass to the method
+            "arguments" => [
+               now()
             ]
-         ]
+			]
       ];
    }
 }
