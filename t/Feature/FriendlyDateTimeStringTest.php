@@ -71,4 +71,20 @@ class FriendlyDateTimeStringTest extends TestCase {
 		]);
 		$this->assertEquals($now->shortAbsoluteDiffForHumans(), $model->created_at);
 	}
+
+	public function test_get_with_prefix_and_arguments() {
+		$now = now();
+		$other = now()->addMonths(1);
+		$model = MockDateFile::createDefault();
+
+		MockDateFile::$created_at_configuration = [
+			"prefix" => "shortRelativeToOther",
+			"arguments" => [$other]
+		];
+
+		$this->assertDatabaseHas("files", [
+			"created_at" => $now
+		]);
+		$this->assertEquals($now->shortRelativeToOtherDiffForHumans($other), $model->created_at);
+	}
 }
