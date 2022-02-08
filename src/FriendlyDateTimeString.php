@@ -27,7 +27,7 @@ class FriendlyDateTimeString implements CastsAttributes {
 	/**
 	 * Encodes the original value to target human-readable format.
 	 *
-	 * @param \KennethTrecy\Elomocato\CastConfiguration $model
+	 * @param \Illuminate\Database\Eloquent\Model|\KennethTrecy\Elomocato\CastConfiguration $model
 	 * @param string $key
 	 * @param string $value
 	 * @param array $attributes
@@ -55,7 +55,7 @@ class FriendlyDateTimeString implements CastsAttributes {
 	/**
 	 * Sets the original value. It does nothin.
 	 *
-	 * @param \KennethTrecy\Elomocato\CastConfiguration $model
+	 * @param \Illuminate\Database\Eloquent\Model|\KennethTrecy\Elomocato\CastConfiguration $model
 	 * @param string $key
 	 * @param string $value
 	 * @param array $attributes
