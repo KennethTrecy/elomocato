@@ -94,7 +94,7 @@ class Post extends Model implements CastConfiguration {
             "arguments" => [
                now()
             ]
-			]
+         ]
       ];
    }
 }
