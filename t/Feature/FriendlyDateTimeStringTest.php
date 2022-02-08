@@ -7,7 +7,7 @@ use Tests\Mocks\Models\File;
 use KennethTrecy\Elomocato\FriendlyDateTimeString;
 use KennethTrecy\Elomocato\CastConfiguration;
 
-class MockDateFile extends File implements CastConfiguration {
+class MockDateFile extends File {
 	protected $table = "files";
 
 	public static function createDefault() {
@@ -16,6 +16,18 @@ class MockDateFile extends File implements CastConfiguration {
 			"content" => "abc"
 		]);
 	}
+}
+
+class MockDateFileA extends MockDateFile {
+	protected $table = "files";
+
+	protected $casts = [
+		"updated_at" => FriendlyDateTimeString::class
+	];
+}
+
+class MockDateFileB extends MockDateFile implements CastConfiguration {
+	protected $table = "files";
 
 	public static $created_at_configuration = [];
 
@@ -36,7 +48,7 @@ class MockDateFile extends File implements CastConfiguration {
 class FriendlyDateTimeStringTest extends TestCase {
 	public function test_get() {
 		$now = now();
-		$model = MockDateFile::createDefault();
+		$model = MockDateFileA::createDefault();
 
 		$this->assertDatabaseHas("files", [
 			"updated_at" => $now
@@ -46,7 +58,7 @@ class FriendlyDateTimeStringTest extends TestCase {
 
 	public function test_set() {
 		$now = now();
-		$model = MockDateFile::createDefault();
+		$model = MockDateFileA::createDefault();
 		$updated_time = $now->addMinutes(3);
 
 		$model->updated_at = $updated_time;
@@ -60,9 +72,9 @@ class FriendlyDateTimeStringTest extends TestCase {
 
 	public function test_get_with_prefix() {
 		$now = now();
-		$model = MockDateFile::createDefault();
+		$model = MockDateFileB::createDefault();
 
-		MockDateFile::$created_at_configuration = [
+		MockDateFileB::$created_at_configuration = [
 			"prefix" => "shortAbsolute"
 		];
 
@@ -75,9 +87,9 @@ class FriendlyDateTimeStringTest extends TestCase {
 	public function test_get_with_prefix_and_arguments() {
 		$now = now();
 		$other = now()->addMonths(1);
-		$model = MockDateFile::createDefault();
+		$model = MockDateFileB::createDefault();
 
-		MockDateFile::$created_at_configuration = [
+		MockDateFileB::$created_at_configuration = [
 			"prefix" => "shortRelativeToOther",
 			"arguments" => [$other]
 		];
