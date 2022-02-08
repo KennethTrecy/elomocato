@@ -9,7 +9,7 @@
 		{
 			"name": "Kenneth Trecy Tobias",
 			"email": "web.kennethtobias@gmail.com",
-			"homepage": "http://repo.local/KennethTrecy",
+			"homepage": "https://github.com/KennethTrecy",
 			"role": "Developer"
 		}
 	],
@@ -36,10 +36,20 @@
 		}
 	},
 	"scripts": {
-		"test": [
+		"test:offline:fast": [
+			"./vendor/bin/phpunit --testsuite Unit,Feature"
+		],
+		"test:offline:slow": [
+			"./vendor/bin/phpunit --testsuite Integration"
+		],
+		"test:offline:all": [
 			"./vendor/bin/phpunit"
 		]
 	},
 	"minimum-stability": "dev",
-	"prefer-stable": true
+	"prefer-stable": true,
+	"config": {
+		"sort-packages": true,
+		"secure-http": true
+	}
 }

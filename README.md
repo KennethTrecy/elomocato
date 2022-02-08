@@ -3,6 +3,9 @@ This repository only contains casting tools to be used with Eloquent models incl
 
 In the future, it may have other classes that can be used with Eloquent models.
 
+## Origin
+The repository was based from [`plugin`] branch of [Web Template].
+
 ## Installation
 1. Put the following information in the your `composer.json`:
    ```
