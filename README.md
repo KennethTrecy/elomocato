@@ -58,8 +58,52 @@ Here are the available classes that can be used to aid in encoding or decoding o
   reverse, it means what is recorded in the database is the decoded value and what is from model is
   the encoded value.
 - `KennethTrecy\Elomocato\FriendlyDateTimeString`. Automatically converts a datetime attribute in
-  human-friendly format. However, it does nothing when setting a value. It uses [`diffForHumans`]
-  and related methods internally.
+  human-friendly format. However, it does nothing when setting a value. It uses [`diffForHumans`] (default)
+  and related methods internally. To customize what method to invoke or arguments to pass, see below.
+
+### Customizing Output of `FriendlyDateTimeString`
+If you want to use the `shortAbsoluteDiffForHumans` and other related methods, you need to implement the `KennethTrecy\Elomocato\CastConfiguration` interface.
+
+Example:
+```
+<?php
+
+use Illuminate\Database\Eloquent\Model;
+use KennethTrecy\Elomocato\FriendlyDateTimeString;
+use KennethTrecy\Elomocato\CastConfiguration;
+
+class Post extends Model implements CastConfiguration {
+   protected $fillable = [
+      "published_datetime"
+   ];
+
+   protected $casts = [
+      "published_datetime" => FriendlyDateTimeString::class
+   ];
+
+   public function getCastConfiguration() {
+      return [
+         FriendlyDatetimeString::NAMESPACE => [
+            // Put the name of attributes you want to customize here...
+            "published_datetime" => [
+               // Prefix of the method use want to use (optional).
+               // If null, the method to be called is `diffForHumans`.
+               // In this case, it will call `shortAbsoluteDiffForHumans`.
+               "prefix" => "shortAbsolute",
+
+               // Arguments to pass to the method
+               "arguments" => [
+                  now()
+               ]
+            ]
+         ]
+      ];
+   }
+}
+
+```
+
+For now, only `KennethTrecy\Elomocato\FriendlyDateTimeString` uses cast configuration. The interface was created to allow other custom cast classes that allows configuration.
 
 ## Documentation
 You can generate the documentation offline using [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
