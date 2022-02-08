@@ -12,18 +12,6 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
  * It does nothing when setting value to the database.
  */
 class FriendlyDateTimeString implements CastsAttributes {
-	const NAMESPACE = "FriendlyDateTimeString";
-
-	protected $namespace;
-
-	function __construct($namespace = null) {
-		if (is_null($namespace)) {
-			$this->namespace = static::NAMESPACE;
-		} else {
-			$this->namespace = $namespace;
-		}
-	}
-
 	/**
 	 * Encodes the original value to target human-readable format.
 	 *
