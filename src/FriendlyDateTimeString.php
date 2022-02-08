@@ -36,7 +36,13 @@ class FriendlyDateTimeString implements CastsAttributes {
 		$all_configurations = $model->getCastConfiguration();
 		$namespaced_configuration = $all_configurations[$this->namespace] ?? [];
 		$key_configuration = $namespaced_configuration[$key] ?? [];
-		return Carbon::parse($value)->diffForHumans();
+		$method_name = "diffForHumans";
+
+		if (isset($key_configuration["prefix"])) {
+			$method_name = $key_configuration["prefix"].ucfirst($method_name);
+		}
+
+		return Carbon::parse($value)->$method_name();
 	}
 
 	/**
