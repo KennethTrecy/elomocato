@@ -40,7 +40,7 @@ class FriendlyDateTimeString implements CastsAttributes {
 	}
 
 	/**
-	 * Sets the original value. It does nothin.
+	 * Sets the original value. It does nothing.
 	 *
 	 * @param \Illuminate\Database\Eloquent\Model|\KennethTrecy\Elomocato\CastConfiguration $model
 	 * @param string $key
