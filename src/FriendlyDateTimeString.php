@@ -17,9 +17,10 @@ class FriendlyDateTimeString implements CastsAttributes {
 	protected $namespace;
 
 	function __construct($namespace = null) {
-		$this->namespace = $namespace;
-		if (!is_null($namespace)) {
+		if (is_null($namespace)) {
 			$this->namespace = static::NAMESPACE;
+		} else {
+			$this->namespace = $namespace;
 		}
 	}
 
