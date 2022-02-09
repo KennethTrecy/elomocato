@@ -4,7 +4,7 @@ namespace Tests\Mocks\Models;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class File extends Factory {
+class FileFactory extends Factory {
 	function __construct($model = null) {
 		$this->model = $model;
 		parent::__construct();
