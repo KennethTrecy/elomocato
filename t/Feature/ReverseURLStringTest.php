@@ -51,6 +51,6 @@ class ReverseURLStringTest extends TestCase {
 		$this->assertDatabaseHas("files", [
 			"name" => null
 		]);
-		$this->assertEquals("", $model->name);
+		$this->assertEquals(null, $model->name);
 	}
 }

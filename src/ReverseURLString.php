@@ -19,6 +19,9 @@ class ReverseURLString implements CastsAttributes {
 	 * @return string
 	 */
 	public function get($model, $key, $value, $attributes) {
+		if (is_null($value)) {
+			return $value;
+		}
 		return urlencode($value);
 	}
 
