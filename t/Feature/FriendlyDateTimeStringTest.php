@@ -2,60 +2,64 @@
 
 namespace Tests\Feature;
 
+use Carbon\Carbon;
 use Tests\TestCase;
+use Tests\Helpers\CanMakeFactory;
 use Tests\Mocks\Models\File;
 use KennethTrecy\Elomocato\FriendlyDateTimeString;
 use KennethTrecy\Elomocato\CastConfiguration;
 
-class MockDateFile extends File {
-	protected $table = "files";
-
-	public static function createDefault() {
-		return static::create([
-			"name" => "a.txt",
-			"content" => "abc"
-		]);
-	}
-}
-
-class MockDateFileA extends MockDateFile {
-	protected $table = "files";
-
-	protected $casts = [
-		"updated_at" => FriendlyDateTimeString::class
-	];
-}
-
-class MockDateFileB extends MockDateFile implements CastConfiguration {
-	protected $table = "files";
-
-	public static $created_at_configuration = [];
-
-	protected $casts = [
-		"created_at" => FriendlyDateTimeString::class
-	];
-
-	public function getCastConfiguration() {
-		return [
-			"created_at" => static::$created_at_configuration
-		];
-	}
-}
-
 class FriendlyDateTimeStringTest extends TestCase {
-	public function test_get() {
-		$now = now();
-		$model = MockDateFileA::createDefault();
+	use CanMakeFactory;
+
+	private $must_create_basic_test_class = true;
+	private $created_at_configuration = [];
+
+	private function createTestClass() {
+		if ($this->must_create_basic_test_class) {
+			return new class extends File {
+				protected $casts = [
+					"updated_at" => FriendlyDateTimeString::class
+				];
+			};
+		} else {
+			$class = new class
+				extends File
+				implements CastConfiguration {
+				public static $created_at_configuration;
+
+				protected $casts = [
+					"created_at" => FriendlyDateTimeString::class
+				];
+
+				public function getCastConfiguration() {
+					return [
+						"created_at" => static::$created_at_configuration
+					];
+				}
+			};
+			$class::$created_at_configuration = $this->created_at_configuration;
+			return $class;
+		}
+	}
+
+	public function testGet() {
+		$this->must_create_basic_test_class = true;
+		$model = $this->makeFactory()->create();
+		$now = Carbon::parse($model->getRawOriginal("updated_at"));
+
+		$updated_at = $model->updated_at;
 
 		$this->assertDatabaseHas("files", [
 			"updated_at" => $now
 		]);
-		$this->assertEquals($now->diffForHumans(), $model->updated_at);
+		$this->assertEquals($now->diffForHumans(), $updated_at);
 	}
 
-	public function test_set() {
-		$now = now();
-		$model = MockDateFileA::createDefault();
+	public function testSet() {
+		$this->must_create_basic_test_class = true;
+		$model = $this->makeFactory()->create();
+		$now = Carbon::parse($model->getRawOriginal("updated_at"));
 		$updated_time = $now->addMinutes(3);
 
 		$model->updated_at = $updated_time;
@@ -67,39 +71,41 @@ class FriendlyDateTimeStringTest extends TestCase {
 		$this->assertEquals($updated_time->diffForHumans(), $model->updated_at);
 	}
 
-	public function test_get_with_prefix() {
-		$now = now();
-		$model = MockDateFileB::createDefault();
+	public function testGetWithPrefix() {
+		$this->must_create_basic_test_class = false;
+		$this->created_at_configuration = [ "prefix" => "shortAbsolute" ];
+		$model = $this->makeFactory()->create();
+		$now = Carbon::parse($model->getRawOriginal("updated_at"));
 
-		MockDateFileB::$created_at_configuration = [
-			"prefix" => "shortAbsolute"
-		];
+		$created_at = $model->created_at;
 
 		$this->assertDatabaseHas("files", [
 			"created_at" => $now
 		]);
-		$this->assertEquals($now->shortAbsoluteDiffForHumans(), $model->created_at);
+		$this->assertEquals($now->shortAbsoluteDiffForHumans(), $created_at);
 	}
 
-	public function test_get_with_prefix_and_arguments() {
-		$now = now();
+	public function testGetWithPrefixAndArguments() {
 		$other = now()->addMonths(1);
-		$model = MockDateFileB::createDefault();
-
-		MockDateFileB::$created_at_configuration = [
+		$this->must_create_basic_test_class = false;
+		$this->created_at_configuration = [
 			"prefix" => "shortRelativeToOther",
 			"arguments" => [$other]
 		];
+		$model = $this->makeFactory()->create();
+		$now = Carbon::parse($model->getRawOriginal("updated_at"));
+
+		$created_at = $model->created_at;
 
 		$this->assertDatabaseHas("files", [
 			"created_at" => $now
 		]);
-		$this->assertEquals($now->shortRelativeToOtherDiffForHumans($other), $model->created_at);
+		$this->assertEquals($now->shortRelativeToOtherDiffForHumans($other), $created_at);
 	}
 
-	public function test_null_set() {
-		$now = now();
-		$model = MockDateFileA::createDefault();
+	public function testNullSet() {
+		$model = $this->makeFactory()->create();
+		$now = Carbon::parse($model->getRawOriginal("updated_at"));
 
 		$model->updated_at = null;
 		$model->save();
