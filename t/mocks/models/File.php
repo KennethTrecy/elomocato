@@ -15,4 +15,8 @@ class File extends Model {
 	function __constructor($casts) {
 		$this->casts = $casts;
 	}
+
+	protected static function newFactory() {
+		return FileFactory::new();
+	}
 }
