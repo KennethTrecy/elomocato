@@ -2,13 +2,11 @@
 
 namespace KennethTrecy\Elomocato;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-
 /**
  * Automatically encodes the attribute from or decodes the attribute into the database using native
  * `url**` functions.
  */
-class ReverseURLString implements CastsAttributes {
+class ReverseURLString extends NullableCaster {
 	/**
 	 * Encodes the original value using `urlencode`.
 	 *
@@ -18,10 +16,7 @@ class ReverseURLString implements CastsAttributes {
 	 * @param array $attributes
 	 * @return string
 	 */
-	public function get($model, $key, $value, $attributes) {
-		if (is_null($value)) {
-			return $value;
-		}
+	protected function cast($model, $key, $value, $attributes) {
 		return urlencode($value);
 	}
 
@@ -34,10 +29,7 @@ class ReverseURLString implements CastsAttributes {
 	 * @param array $attributes
 	 * @return string
 	 */
-	public function set($model, $key, $value, $attributes) {
-		if (is_null($value)) {
-			return $value;
-		}
+	protected function uncast($model, $key, $value, $attributes) {
 		return urldecode($value);
 	}
 }
