@@ -27,4 +27,27 @@ class Base64StringTest extends TestCase {
 			"name" => base64_encode($decoded_name)
 		]);
 	}
+
+	public function testSet() {
+		$model = $this->makeFactory()->create();
+		$updated_model = $this->makeFactory()->make();
+
+		$model->name = $updated_model->name;
+		$model->save();
+
+		$this->assertDatabaseHas("files", [
+			"name" => base64_encode($updated_model->name)
+		]);
+	}
+
+	public function testNullSet() {
+		$model = $this->makeFactory()->create();
+
+		$model->name = null;
+		$model->save();
+
+		$this->assertDatabaseHas("files", [
+			"name" => null
+		]);
+	}
 }
