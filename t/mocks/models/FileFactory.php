@@ -22,7 +22,12 @@ class FileFactory extends Factory {
 		];
 	}
 
-	public function customValues(array $custom_values) {
-		return $this->state([ "name" => $custom_values ]);
+	public function transform(array $transformers) {
+		return $this->state(function ($values) use ($transformers) {
+			foreach ($transformers as $attribute_name => $transformer) {
+				$values[$attribute_name] = $transformer($values[$attribute_name]);
+			}
+			return $values;
+		});
 	}
 }
