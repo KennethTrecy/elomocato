@@ -32,6 +32,9 @@ class ReverseURLString implements CastsAttributes {
 	 * @return string
 	 */
 	public function set($model, $key, $value, $attributes) {
+		if (is_null($value)) {
+			return $value;
+		}
 		return urldecode($value);
 	}
 }
