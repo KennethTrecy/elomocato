@@ -96,4 +96,17 @@ class FriendlyDateTimeStringTest extends TestCase {
 		]);
 		$this->assertEquals($now->shortRelativeToOtherDiffForHumans($other), $model->created_at);
 	}
+
+	public function test_null_set() {
+		$now = now();
+		$model = MockDateFileA::createDefault();
+
+		$model->updated_at = null;
+		$model->save();
+
+		$this->assertDatabaseHas("files", [
+			"updated_at" => null
+		]);
+		$this->assertEquals(now()->diffForHumans(), $model->updated_at);
+	}
 }

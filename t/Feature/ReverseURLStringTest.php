@@ -45,4 +45,20 @@ class ReverseURLStringTest extends TestCase {
 		]);
 		$this->assertEquals(urlencode($new_name), $model->name);
 	}
+
+	public function test_null_set() {
+		$name = "a a.txt";
+		$model = MockReverseURLFile::create([
+			"name" => urlencode($name),
+			"content" => "abc"
+		]);
+
+		$model->name = null;
+		$model->save();
+
+		$this->assertDatabaseHas("files", [
+			"name" => null
+		]);
+		$this->assertEquals("", $model->name);
+	}
 }
