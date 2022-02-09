@@ -5,7 +5,10 @@ namespace Tests\Mocks\Models;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class File extends Factory {
-	protected $model = File::class;
+	function __construct($model = null) {
+		$this->model = $model;
+		parent::__construct();
+	}
 
 	/**
 	 * Define the model's default state.

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class File extends Model {
 	protected $table = "files";
+	public $factory;
 
 	protected $fillable = [
 		"name",
@@ -17,6 +18,6 @@ class File extends Model {
 	}
 
 	protected static function newFactory() {
-		return FileFactory::new();
+		return $factory;
 	}
 }
