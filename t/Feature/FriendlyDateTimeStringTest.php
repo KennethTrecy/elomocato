@@ -113,6 +113,6 @@ class FriendlyDateTimeStringTest extends TestCase {
 		$this->assertDatabaseHas("files", [
 			"updated_at" => null
 		]);
-		$this->assertEquals(now()->diffForHumans(), $model->updated_at);
+		$this->assertEquals(null, $model->updated_at);
 	}
 }

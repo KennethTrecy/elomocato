@@ -3,7 +3,6 @@
 namespace KennethTrecy\Elomocato;
 
 use Carbon\Carbon;
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 
 /**
  * Automatically encodes the datetime difference between the current time and the time value in
@@ -11,7 +10,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
  *
  * It does nothing when setting value to the database.
  */
-class FriendlyDateTimeString implements CastsAttributes {
+class FriendlyDateTimeString extends NullableCaster {
 	/**
 	 * Encodes the original value to target human-readable format.
 	 *
@@ -21,7 +20,7 @@ class FriendlyDateTimeString implements CastsAttributes {
 	 * @param array $attributes
 	 * @return string
 	 */
-	public function get($model, $key, $value, $attributes) {
+	protected function cast($model, $key, $value, $attributes) {
 		$all_configurations = [];
 		if ($model instanceof CastConfiguration) {
 			$all_configurations = $model->getCastConfiguration();
@@ -48,7 +47,7 @@ class FriendlyDateTimeString implements CastsAttributes {
 	 * @param array $attributes
 	 * @return string
 	 */
-	public function set($model, $key, $value, $attributes) {
+	protected function uncast($model, $key, $value, $attributes) {
 		return $value;
 	}
 }
