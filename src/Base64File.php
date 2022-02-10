@@ -28,7 +28,7 @@ class Base64File extends Base64String {
 	 */
 	public function cast($model, $key, $value, $attributes) {
 		if (is_string($value)) {
-			return parent::get($model, $key, $value, $attributes);
+			return parent::cast($model, $key, $value, $attributes);
 		} else {
 			$copy_buffer = fopen("php://memory", "r+");
 			stream_copy_to_stream($value, $copy_buffer);
@@ -56,10 +56,10 @@ class Base64File extends Base64String {
 	 */
 	public function uncast($model, $key, $value, $attributes) {
 		if (is_string($value)) {
-			return parent::set($model, $key, $value, $attributes);
+			return parent::uncast($model, $key, $value, $attributes);
 		} else {
 			$decoded_contents = stream_get_contents($value);
-			$encoded_contents = parent::set($model, $key, $decoded_contents, $attributes);
+			$encoded_contents = parent::uncast($model, $key, $decoded_contents, $attributes);
 
 			$type = $model->type;
 			return fopen("data://$type,$encoded_contents", "rb");
