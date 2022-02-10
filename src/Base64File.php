@@ -2,8 +2,6 @@
 
 namespace KennethTrecy\Elomocato;
 
-use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
-
 /**
  * It is like `Base64String` but it can also handle binary data from database.
  *
@@ -14,7 +12,7 @@ use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
  *
  * @link https://www.php.net/manual/en/wrappers.data.php
  */
-class Base64File extends Base64String implements CastsAttributes {
+class Base64File extends Base64String {
 	/**
 	 * Decodes the original value using `base64_decode`.
 	 *
@@ -28,7 +26,7 @@ class Base64File extends Base64String implements CastsAttributes {
 	 * @param array $attributes
 	 * @return string|resource
 	 */
-	public function get($model, $key, $value, $attributes) {
+	public function cast($model, $key, $value, $attributes) {
 		if (is_string($value)) {
 			return parent::get($model, $key, $value, $attributes);
 		} else {
@@ -56,7 +54,7 @@ class Base64File extends Base64String implements CastsAttributes {
 	 * @param array $attributes
 	 * @return string|resource
 	 */
-	public function set($model, $key, $value, $attributes) {
+	public function uncast($model, $key, $value, $attributes) {
 		if (is_string($value)) {
 			return parent::set($model, $key, $value, $attributes);
 		} else {
