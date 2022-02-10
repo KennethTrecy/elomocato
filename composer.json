@@ -47,12 +47,5 @@
 	"config": {
 		"sort-packages": true,
 		"secure-http": true
-	},
-	"extra": {
-		"laravel": {
-			"providers": [
-				"KennethTrecy\\"
-			]
-		}
 	}
 }
