@@ -4,7 +4,7 @@ namespace KennethTrecy\Elomocato;
 
 /**
  * Automatically encodes the attribute from or decodes the attribute into the database using native
- * `url**` functions.
+ * `url_*` functions.
  */
 class ReverseURLString extends NullableCaster {
 	/**
