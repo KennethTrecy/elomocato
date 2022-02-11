@@ -32,4 +32,19 @@ class AccessibleFileTest extends TestCase
         $this->assertEquals(Storage::url($path), $url);
         Storage::disk("local")->assertExists($path);
     }
+
+    public function testSet()
+    {
+        Storage::fake("local");
+        $model = $this->makeFactory()->create();
+        $updated_model = $this->makeFactory()->make()->toArray();
+        $updated_path = ltrim($updated_model["path"], "/storage");
+
+        $model->path = $updated_path;
+        $model->save();
+
+        $url = $model->path;
+        $this->assertEquals(Storage::url($updated_path), $url);
+        Storage::disk("local")->assertExists($updated_path);
+    }
 }
