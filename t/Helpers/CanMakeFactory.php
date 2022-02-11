@@ -9,14 +9,10 @@ trait CanMakeFactory
     protected function makeFactory()
     {
         $class = $this->createTestClass();
-
         $class_name = get_class($class);
-        $factory = new class ($class_name) extends FileFactory {
-            public function __construct($class_name)
-            {
-                parent::__construct($class_name);
-            }
-        };
+        $factory_class = $class->factory;
+
+        $factory = new $factory_class($class_name);
 
         return $factory;
     }
