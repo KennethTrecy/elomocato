@@ -2,6 +2,7 @@
 
 namespace KennethTrecy\Elomocato;
 
+use Exception;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,6 +24,8 @@ class AccessibleFile extends NullableCaster
      * @param string|\Illuminate\Http\UploadedFile|null $value
      * @param array $attributes
      * @return mixed|null
+     *
+     * @throws Exception
      */
     public function set($model, $key, $value, $attributes)
     {
@@ -33,20 +36,28 @@ class AccessibleFile extends NullableCaster
          * b = Previous file exists in storage.
          * c = There is a new path to set.
          * d = There is a new file to set.
+         * e = Explicitly set to null.
          *
          * Delete file only when:
-         * 1. a ∧ (b ∨ c ∨ d)
+         * 1. a ∧ b ∧ (c ∨ d ∨ e)
          *
          */
-        if (
-            is_string($previous_path)
-            && (
-                Storage::exists($previous_path)
-                || is_string($value)
-                || $value instanceof UploadedFile
-            )
-        ) {
-            Storage::delete($previous_path);
+        if (is_string($previous_path)) {
+            if (Storage::exists($previous_path)) {
+                $deleteFile = function () use ($previous_path) {
+                    Storage::delete($previous_path);
+                };
+
+                if (is_null($value)) {
+                    $deleteFile();
+                } elseif (is_string($value)) {
+                    $deleteFile();
+                } elseif ($value instanceof UploadedFile) {
+                    $deleteFile();
+                } else {
+                    throw new Exception("Invalid for accessible file.");
+                }
+            }
         }
 
         return $this->uncast($model, $key, $value, $attributes);
