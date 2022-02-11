@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
  * uploaded file, it will be automatically stored and uses the path to the stored file as the value
  * of the attribute in the database.
  */
-class AccesibleFile extends NullableCaster
+class AccessibleFile extends NullableCaster
 {
     /**
      * Generates a URL where to access the file.
