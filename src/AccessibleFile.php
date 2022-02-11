@@ -24,4 +24,21 @@ class AccesibleFile extends NullableCaster
     {
         return Storage::url($value);
     }
+
+    /**
+     * Stores the file automatically in "/" and returns the path to the stored file.
+     *
+     * In that way, the raw value in the database is a file path only.
+     *
+     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param string $key
+     * @param \Illuminate\Http\UploadedFile $value
+     * @param array $attributes
+     * @return string
+     */
+    protected function uncast($model, $key, $value, $attributes)
+    {
+        $path = $value->store("/");
+        return $path;
+    }
 }
