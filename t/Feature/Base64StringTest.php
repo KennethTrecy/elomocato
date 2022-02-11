@@ -7,47 +7,52 @@ use Tests\Mocks\Models\File;
 use Tests\Helpers\CanMakeFactory;
 use KennethTrecy\Elomocato\Base64String;
 
-class Base64StringTest extends TestCase {
-	use CanMakeFactory;
+class Base64StringTest extends TestCase
+{
+    use CanMakeFactory;
 
-	private function createTestClass() {
-		return new class extends File {
-			protected $casts = [
-				"name" => Base64String::class
-			];
-		};
-	}
+    private function createTestClass()
+    {
+        return new class () extends File {
+            protected $casts = [
+                "name" => Base64String::class
+            ];
+        };
+    }
 
-	public function testGet() {
-		$model = $this->makeFactory()->create();
+    public function testGet()
+    {
+        $model = $this->makeFactory()->create();
 
-		$decoded_name = $model->name;
+        $decoded_name = $model->name;
 
-		$this->assertDatabaseHas("files", [
-			"name" => base64_encode($decoded_name)
-		]);
-	}
+        $this->assertDatabaseHas("files", [
+            "name" => base64_encode($decoded_name)
+        ]);
+    }
 
-	public function testSet() {
-		$model = $this->makeFactory()->create();
-		$updated_model = $this->makeFactory()->make();
+    public function testSet()
+    {
+        $model = $this->makeFactory()->create();
+        $updated_model = $this->makeFactory()->make();
 
-		$model->name = $updated_model->name;
-		$model->save();
+        $model->name = $updated_model->name;
+        $model->save();
 
-		$this->assertDatabaseHas("files", [
-			"name" => base64_encode($updated_model->name)
-		]);
-	}
+        $this->assertDatabaseHas("files", [
+            "name" => base64_encode($updated_model->name)
+        ]);
+    }
 
-	public function testNullSet() {
-		$model = $this->makeFactory()->create();
+    public function testNullSet()
+    {
+        $model = $this->makeFactory()->create();
 
-		$model->name = null;
-		$model->save();
+        $model->name = null;
+        $model->save();
 
-		$this->assertDatabaseHas("files", [
-			"name" => null
-		]);
-	}
+        $this->assertDatabaseHas("files", [
+            "name" => null
+        ]);
+    }
 }
