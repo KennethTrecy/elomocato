@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3.1
+- Add `AccessibleFile` class to store files automatically and convert into URL when getting them.
+
 ## v0.3.0
 - Add `NullableCaster` abstract class to make all custom cast classes to cast/uncast only if value
   being set or get is not null. This is to support the behavior in Laravel Framework v9. See its
