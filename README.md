@@ -63,6 +63,8 @@ Here are the available classes that can be used to aid in encoding or decoding o
 - `KennethTrecy\Elomocato\FriendlyDateTimeString`. Automatically converts a datetime attribute in
   human-friendly format. However, it does nothing when setting a value. It uses [`diffForHumans`] (default)
   and related methods internally. To customize what method to invoke or arguments to pass, see below.
+- `KennethTrecy\Elomocato\AccessibleFile`. Automatically stores an uploaded file and puts the file
+  path in the database. If it will get the value, it will return the URL where to access the file.
 
 ### Customizing Output of `FriendlyDateTimeString`
 If you want to use the `shortAbsoluteDiffForHumans` and other related methods, you need to implement the `KennethTrecy\Elomocato\CastConfiguration` interface.
