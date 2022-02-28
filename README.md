@@ -107,7 +107,7 @@ class Post extends Model implements CastConfiguration {
 
 ```
 
-For now, only `KennethTrecy\Elomocato\FriendlyDateTimeString` uses cast configuration. The interface was created to allow other custom cast classes that allows configuration.
+For now, only `KennethTrecy\Elomocato\FriendlyDateTimeString` uses cast configuration. The interface was created to allow other custom cast classes have a configuration.
 
 ## Documentation
 You can generate the documentation offline using [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
