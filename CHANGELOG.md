@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.3.2
+- Add `TemporaryAccessibleFile` class that acts like `AccessibleFile`  generates temporary URL.
+
 ## v0.3.1
 - Add `AccessibleFile` class to store files automatically and convert into URL when getting them.
 
