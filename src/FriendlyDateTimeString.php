@@ -12,6 +12,8 @@ use Carbon\Carbon;
  */
 class FriendlyDateTimeString extends NullableCaster
 {
+    use Configurable;
+
     /**
      * Encodes the original value to target human-readable format.
      *
@@ -23,19 +25,14 @@ class FriendlyDateTimeString extends NullableCaster
      */
     protected function cast($model, $key, $value, $attributes)
     {
-        $all_configurations = [];
-        if ($model instanceof CastConfiguration) {
-            $all_configurations = $model->getCastConfiguration();
-        }
-
-        $key_configuration = $all_configurations[$key] ?? [];
+        $configuration = $this->generateConfiguration($model, $key);
 
         $method_name = "diffForHumans";
-        if (isset($key_configuration["prefix"])) {
-            $method_name = $key_configuration["prefix"].ucfirst($method_name);
+        if ($configuration->get("prefix") !== "") {
+            $method_name = $configuration->get("prefix").ucfirst($method_name);
         }
 
-        $arguments = $key_configuration["arguments"] ?? [];
+        $arguments = $configuration->get("arguments");
 
         return Carbon::parse($value)->$method_name(...$arguments);
     }
@@ -52,5 +49,12 @@ class FriendlyDateTimeString extends NullableCaster
     protected function uncast($model, $key, $value, $attributes)
     {
         return $value;
+    }
+
+    protected function generateDefaults(): array {
+        return [
+            "prefix" => "",
+            "arguments" => []
+        ];
     }
 }
