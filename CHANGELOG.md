@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.3-RC0
+- Add `TemporaryAccessibleFile` and `AceessibleFile` classes can now be configured. See the
+  documentation comments in each classes for available configurations.
+
 ## v0.3.2
 - Add `TemporaryAccessibleFile` class that acts like `AccessibleFile`  generates temporary URL.
 
