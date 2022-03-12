@@ -95,9 +95,10 @@ class AccessibleFile extends NullableCaster
      */
     protected function uncast($model, $key, $value, $attributes)
     {
+        $configuration = $this->generateConfiguration($model, $key);
         $path = $value;
         if ($value instanceof UploadedFile) {
-            $path = $value->store("/");
+            $path = $value->store($configuration->get("store_path"));
         }
 
         return $path;
@@ -105,7 +106,8 @@ class AccessibleFile extends NullableCaster
 
     protected function generateDefaults(): array {
         return [
-            "disk" => null
+            "disk" => null,
+            "store_path" => "/"
         ];
     }
 }
