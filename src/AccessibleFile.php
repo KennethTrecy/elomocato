@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
  */
 class AccessibleFile extends NullableCaster
 {
+    use Configurable;
+
     /**
      * Deletes the previous file associated if there is an existing one or there is a new file to
      * set.
@@ -29,6 +31,7 @@ class AccessibleFile extends NullableCaster
      */
     public function set($model, $key, $value, $attributes)
     {
+        $configuration = $this->generateConfiguration($model, $key);
         $previous_path = $model->getRawOriginal($key);
 
         /**
@@ -43,9 +46,9 @@ class AccessibleFile extends NullableCaster
          *
          */
         if (is_string($previous_path)) {
-            if (Storage::exists($previous_path)) {
-                $deleteFile = function () use ($previous_path) {
-                    Storage::delete($previous_path);
+            if (Storage::disk($configuration->get("disk"))->exists($previous_path)) {
+                $deleteFile = function () use ($configuration, $previous_path) {
+                    Storage::disk($configuration->get("disk"))->delete($previous_path);
                 };
 
                 if (is_null($value)) {
@@ -74,7 +77,8 @@ class AccessibleFile extends NullableCaster
      */
     protected function cast($model, $key, $value, $attributes)
     {
-        return Storage::url($value);
+        $configuration = $this->generateConfiguration($model, $key);
+        return Storage::disk($configuration->get("disk"))->url($value);
     }
 
     /**
@@ -97,5 +101,11 @@ class AccessibleFile extends NullableCaster
         }
 
         return $path;
+    }
+
+    protected function generateDefaults(): array {
+        return [
+            "disk" => null
+        ];
     }
 }
