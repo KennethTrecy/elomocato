@@ -1,6 +1,6 @@
 # Changelog
 
-## v0.3.3-RC0
+## v0.3.3
 - Add `TemporaryAccessibleFile` and `AceessibleFile` classes can now be configured. See the
   documentation comments in each classes for available configurations.
 
