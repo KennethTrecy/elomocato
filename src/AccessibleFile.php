@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
  * uploaded file, it will be automatically stored and uses the path to the stored file as the value
  * of the attribute in the database.
  *
- * The class has the following default values:
+ * The class has the following default configuration values:
  * - `disk = null`
  * - `store_path = "/"`
  */

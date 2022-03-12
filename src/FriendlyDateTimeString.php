@@ -9,6 +9,10 @@ use Carbon\Carbon;
  * the applied attribute into human-friendly format.
  *
  * It does nothing when setting value to the database.
+ *
+ * The class has the following default configuration values:
+ * - `prefix = ""`
+ * - `arguments = []`
  */
 class FriendlyDateTimeString extends NullableCaster
 {
