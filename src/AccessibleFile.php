@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Storage;
  * Automatically creates a URL where to access the file specified in the attribute. When setting an
  * uploaded file, it will be automatically stored and uses the path to the stored file as the value
  * of the attribute in the database.
+ *
+ * The class has the following default values:
+ * - `disk = null`
+ * - `store_path = "/"`
  */
 class AccessibleFile extends NullableCaster
 {

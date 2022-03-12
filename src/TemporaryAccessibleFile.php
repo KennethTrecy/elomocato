@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Storage;
  * setting an uploaded file, it will be automatically stored and uses the path to the stored file as
  * the value of the attribute in the database.
  *
- * For now, files can be accessed for 10 minutes. In the future, this can be customized.
+ * For now, files can be accessed for 3 minutes.
+ *
+ * The class has the following default values:
+ * - `disk = null`
+ * - `store_path = "/"`
+ * - `temporary_time_duration = [3 minutes from the time of requesting the UTL]`
  */
 class TemporaryAccessibleFile extends AccessibleFile
 {
