@@ -24,6 +24,14 @@ class TemporaryAccessibleFile extends AccessibleFile
      */
     protected function cast($model, $key, $value, $attributes)
     {
-        return Storage::temporaryUrl($value, now()->addMinutes(3));
+        $configuration = $this->generateConfiguration($model, $key);
+        return Storage::disk($configuration->get("disk"))
+            ->temporaryUrl($value, $configuration->get("temporary_time_duration"));
+    }
+
+    protected function generateDefaults(): array {
+        return array_merge(parent::generateDefaults(), [
+            "temporary_time_duration" => now()->addMinutes(3)
+        ]);
     }
 }
