@@ -1,8 +1,11 @@
 # Changelog
 
+## v0.4.0
+- Change the structure of configuration needed by some custom cast classes.
+
 ## v0.3.3
-- Add `TemporaryAccessibleFile` and `AceessibleFile` classes can now be configured. See the
-  documentation comments in each classes for available configurations.
+- Add `TemporaryAccessibleFile` and `AceessibleFile` classes can now be configured. Check the
+  documentation in each classes for available configurations.
 
 ## v0.3.2
 - Add `TemporaryAccessibleFile` class that acts like `AccessibleFile`  generates temporary URL.
