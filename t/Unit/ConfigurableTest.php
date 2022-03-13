@@ -15,8 +15,10 @@ class ConfigurableTest extends TestCase
             public function getCastConfiguration()
             {
                 return [
-                    "hello" => [
-                        "foo" => "bar"
+                    static::class => [
+                        "hello" => [
+                            "foo" => "bar"
+                        ]
                     ]
                 ];
             }
@@ -72,6 +74,43 @@ class ConfigurableTest extends TestCase
         $this->assertEquals(
             $configuration,
             new Configuration([ "hello" => "world" ], [])
+        );
+    }
+
+    public function testGettingDefaultCustomConfiguration()
+    {
+        $model = new class () implements CastConfiguration {
+            public function getCastConfiguration()
+            {
+                return [
+                    static::class => [
+                        "default" => [
+                            "foo" => "baz"
+                        ]
+                    ]
+                ];
+            }
+        };
+        $cast_class = new class () {
+            use Configurable;
+
+            public function generateDefaults()
+            {
+                return [
+                    "hello" => "world"
+                ];
+            }
+
+            public function getConfiguration($model, $key) {
+                return $this->generateConfiguration($model, $key);
+            }
+        };
+
+        $configuration = $cast_class->getConfiguration($model, null);
+
+        $this->assertEquals(
+            $configuration,
+            new Configuration([ "hello" => "world" ], [ "foo" => "baz" ])
         );
     }
 

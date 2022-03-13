@@ -35,7 +35,9 @@ class FriendlyDateTimeStringTest extends TestCase
                 public function getCastConfiguration()
                 {
                     return [
-                        "created_at" => static::$created_at_configuration
+                        static::class => [
+                            "default" => static::$created_at_configuration
+                        ]
                     ];
                 }
             };
