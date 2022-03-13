@@ -15,7 +15,7 @@ The repository was based from [`plugin`] branch of [Web Template].
       "require": {
          // other dependencies here...
 
-         "kennethtrecy/elomocato": "^0.3.0"
+         "kennethtrecy/elomocato": "^0.4.0"
       },
 
       // Your other properties like require-dev, autoload, etc...
