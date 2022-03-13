@@ -89,16 +89,29 @@ class Post extends Model implements CastConfiguration {
 
    public function getCastConfiguration() {
       return [
-         // Put the name of attributes you want to customize here...
-         "published_datetime" => [
-            // Prefix of the method use want to use (optional).
-            // If null, the method to be called is `diffForHumans`.
-            // In this case, it will call `shortAbsoluteDiffForHumans`.
-            "prefix" => "shortAbsolute",
+         // Contain all `FriendlyDateTimeString` cast configurations
+         FriendlyDateTimeString::class => [
+            // Put the name of attributes you want to customize here...
 
-            // Arguments to pass to the method
-            "arguments" => [
-               now()
+            // The only exception is the "default" key.
+            // This will be selected for all attributes.
+            "default" => [
+               "prefix" => "longAbsolute",
+               "arguments" => now()
+            ],
+
+            // If the attribute name has associated configuration,
+            // it will override the default configuration above.
+            "published_datetime" => [
+               // Prefix of the method use want to use (optional).
+               // If null, the method to be called is `diffForHumans`.
+               // In this case, it will call `shortAbsoluteDiffForHumans`.
+               "prefix" => "shortAbsolute",
+
+               // Arguments to pass to the method
+               "arguments" => [
+                  now()
+               ]
             ]
          ]
       ];
@@ -107,10 +120,16 @@ class Post extends Model implements CastConfiguration {
 
 ```
 
+### Custom cast configurations
 For now, only `KennethTrecy\Elomocato\FriendlyDateTimeString`,
 `KennethTrecy\Elomocato\AccessibleFile`, and `KennethTrecy\Elomocato\TemporaryAccessibleFile` use
 cast configuration. The interface was created to allow other custom cast classes have a
 configuration.
+
+The algorithm will resolve configurations in this order:
+1. Custom configuration in model specified by attribute name as key.
+2. Custom configuration in model specified by `default` key.
+3. Default configuration specified in the custom cast classes themselves.
 
 ## Documentation
 You can generate the documentation offline using [phpDocumentor](https://docs.phpdoc.org/guide/getting-started/installing.html).
