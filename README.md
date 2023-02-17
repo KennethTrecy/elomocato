@@ -1,11 +1,11 @@
-<!-- [![Web Front-end Tests](https://img.shields.io/github/actions/workflow/status/KennethTrecy/web_template/front-end.yml?style=for-the-badge)](https://github.com/KennethTrecy/web_template/actions/workflows/:workflow-filename.yml) -->
-![GitHub lines](https://img.shields.io/github/license/KennethTrecy/web_template?style=for-the-badge)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/KennethTrecy/web_template?style=for-the-badge&display_name=tag&sort=semver)
-![GitHub closed issues count](https://img.shields.io/github/issues-closed/KennethTrecy/web_template?style=for-the-badge)
-![GitHub pull request count](https://img.shields.io/github/issues-pr-closed/KennethTrecy/web_template?style=for-the-badge)
-<!-- ![Commits since latest version](https://img.shields.io/github/commits-since/KennethTrecy/web_template/latest?style=for-the-badge) -->
-![Lines of code](https://img.shields.io/tokei/lines/github/KennethTrecy/web_template?style=for-the-badge)
-![GitHub code size in bytes](https://img.shields.io/github/repo-size/KennethTrecy/web_template?style=for-the-badge)
+[![Web Core Back-end Tests](https://img.shields.io/github/actions/workflow/status/KennethTrecy/elomocato/back-end.yml?style=for-the-badge)](https://github.com/KennethTrecy/elomocato/actions/workflows/back-end.yml)
+![GitHub lines](https://img.shields.io/github/license/KennethTrecy/elomocato?style=for-the-badge)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/KennethTrecy/elomocato?style=for-the-badge&display_name=tag&sort=semver)
+![GitHub closed issues count](https://img.shields.io/github/issues-closed/KennethTrecy/elomocato?style=for-the-badge)
+![GitHub pull request count](https://img.shields.io/github/issues-pr-closed/KennethTrecy/elomocato?style=for-the-badge)
+![Commits since latest version](https://img.shields.io/github/commits-since/KennethTrecy/elomocato/latest?style=for-the-badge)
+![Lines of code](https://img.shields.io/tokei/lines/github/KennethTrecy/elomocato?style=for-the-badge)
+![GitHub code size in bytes](https://img.shields.io/github/repo-size/KennethTrecy/elomocato?style=for-the-badge)
 
 # Elomocato (Eloquent Model Casting Tools)
 This repository only contains casting tools to be used with Eloquent models included in [Laravel Framework](https://laravel.com/).
